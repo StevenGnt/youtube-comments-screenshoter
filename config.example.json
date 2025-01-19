@@ -1,0 +1,6 @@
+{
+    "API_KEY": "YouTube API key here",
+    "CHANNEL_ID": "YouTube channel ID here",
+    "FETCH_OUTPUT_FILENAME": "./youtube-comments.json",
+    "SCREENSHOTS_OUTPUT_DIRECTORY": "./screenshots"
+}

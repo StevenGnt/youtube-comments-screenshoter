@@ -1,0 +1,10 @@
+{
+  "name": "youtube-comments-screenshoter",
+  "version": "1.0.0",
+  "description": "Fetch the comments of a YouTube channel and outputs each comment on a square png",
+  "author": "Steven Gangnant",
+  "dependencies": {
+    "googleapis": "^144.0.0",
+    "puppeteer": "^24.1.0"
+  }
+}

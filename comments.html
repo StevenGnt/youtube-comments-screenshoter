@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Bootstrap Example</title>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const comments = []; // Replace "[]" with the content of youtube-comments.json
+
+
+        function Comment({ comment }) {
+            return (
+                <div className="comment__wrapper" style={{ "--authorProfileImageUrl": `url('${comment.authorProfileImageUrl}')` }}>
+                    <div className="comment__blurr">
+                        <div className="comment">
+                            <img className="comment__authorImage" src={comment.authorProfileImageUrl} />
+                            <div className="comment__main">
+                                <span className="comment__authorName">{comment.authorDisplayName}</span>
+                                <div className="comment__textDisplay" dangerouslySetInnerHTML={{ __html: comment.textDisplay }} />
+                            </div>
+                        </div>
+                    </div>
+                </div >
+            );
+        }
+
+        // A simple React component
+        function App() {
+            const numberOfComments = -1; // -1 = no limit
+
+            return (
+                <div className="comments">
+                    {comments.slice(0, numberOfComments).map((comment, i) => <Comment key={i} comment={comment} />)}
+                </div>
+            );
+        }
+
+        // Render the App component into the #root div
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+
+    <style>
+        /* Boilerplate styles */
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: Roboto, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* height: 100vh; */
+            background-color: #f5f5f5;
+        }
+
+        /* Boilerplate styles */
+
+        :root {
+            /* Wrapper */
+            --commentWrapperSize: 500px;
+            --commentWrapperBorderRadius: 15px;
+
+            /* Container */
+            --commentBorderRadius: 5px;
+
+            /* Author image */
+            --authorImageSize: 50px;
+            --authorImageBorderRadius: 25px;
+
+            /* Author name */
+            --authorNameFontSize: 14px;
+
+            /* Comment text */
+            --commentFontSize: 14px;
+
+            /* Utils */
+            --blurGradient: rgba(200, 200, 200, 0.5)
+        }
+
+        .comment__wrapper {
+            height: var(--commentWrapperSize);
+            width: var(--commentWrapperSize);
+            background: linear-gradient(var(--blurGradient), var(--blurGradient)),
+                var(--authorProfileImageUrl);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            margin: 20px 0;
+            display: flex;
+            align-items: stretch;
+        }
+
+        .comment__blurr {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+        }
+
+        .comment__wrapper,
+        .comment__blurr {
+            border-radius: var(--commentWrapperBorderRadius);
+        }
+
+        .comment {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            background-color: white;
+            border-radius: var(--commentBorderRadius);
+            padding: 10px 12px 10px 10px;
+            margin: 10px;
+            gap: 10px;
+        }
+
+        .comment__main {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .comment__authorName {
+            font-size: var(--authorNameFontSize);
+            font-weight: 600;
+        }
+
+        .comment__authorImage {
+            height: var(--authorImageSize);
+            width: var(--authorImageSize);
+            border-radius: var(--authorImageBorderRadius);
+        }
+
+        .comment__textDisplay {
+            font-size: var(--commentFontSize);
+        }
+    </style>
+</body>
+
+</html>
